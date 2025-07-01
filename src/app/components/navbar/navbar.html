@@ -1,0 +1,69 @@
+<nav class="navbar">
+  <div class="navbar-inner">
+    <img src="assets/logos/buhl-logo.svg" alt="Logo" class="navbar-logo" />
+
+    <ul class="navbar-menu">
+      <li class="navbar-item">
+        Alle Produkte <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
+      </li>
+      <li class="navbar-item">
+        Produktfinder <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
+      </li>
+      <li class="navbar-item">
+        Empfehlungen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
+      </li>
+      <li class="navbar-item">
+        Testversionen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
+      </li>
+    </ul>
+
+    <div class="navbar-icons">
+      <div class="navbar-icon-block">
+        <img src="assets/icons/ic-suche-24.svg" alt="Suchen" />
+        <span>Suchen</span>
+      </div>
+      <div class="navbar-icon-block">
+        <img src="assets/icons/ic-apps-24.svg" alt="Apps" />
+        <span>Apps</span>
+      </div>
+      <div class="navbar-icon-block">
+        <img src="assets/icons/ic-person-24.svg" alt="Kundencenter" />
+        <span>Kundencenter</span>
+      </div>
+      <div class="navbar-icon-block navbar-icon-cart">
+        <img src="assets/icons/ic-warenkorb-24.svg" alt="Warenkorb" />
+        <span>Warenkorb</span>
+        @if (cartCount > 0) {
+          <span class="cart-badge">{{ cartCount }}</span>
+        }
+        </div>
+    </div>
+
+    <button class="navbar-login-button" (click)="isLoggedIn ? logout() : openLoginModal()">
+      <img src="assets/icons/account_circle-24px.svg" alt="Login"  />
+      <span>{{ isLoggedIn ? 'ABMELDEN' : 'ANMELDEN' }}</span>
+    </button>
+  </div>
+</nav>
+<img src="assets/images/buhlstreifen.svg" alt="Streifen" class="navbar-stripe" />
+
+
+<div class="modal-backdrop" [class.hidden]="!showLoginModal">
+  <div class="login-modal">
+    <button class="close-button" (click)="closeLoginModal()">×</button>
+    <h2>Anmelden</h2>
+    <form (submit)="login($event)">
+      <label>
+        Benutzername
+        <input type="text" [(ngModel)]="username" name="username" required />
+      </label>
+      <label>
+        Passwort
+        <input type="password" [(ngModel)]="password" name="password" required />
+      </label>
+      <button type="submit" class="login-button">Anmelden</button>
+    </form>
+  </div>
+</div>
+
+
