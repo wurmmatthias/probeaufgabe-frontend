@@ -27,9 +27,16 @@
         <img src="assets/icons/ic-apps-24.svg" alt="Apps" />
         <span>Apps</span>
       </div>
-      <div class="navbar-icon-block">
+      <div class="navbar-icon-block" (click)="toggleProfileView()">
         <img src="assets/icons/ic-person-24.svg" alt="Kundencenter" />
         <span>Kundencenter</span>
+      </div>
+      <div *ngIf="showProfileView && user" class="user-profile-panel">
+        <img [src]="user.image" [alt]="user.firstName" width="64" height="64" />
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Geschlecht:</strong> {{ user.gender }}</p>
       </div>
       <div class="navbar-icon-block navbar-icon-cart">
         <img src="assets/icons/ic-warenkorb-24.svg" alt="Warenkorb" />

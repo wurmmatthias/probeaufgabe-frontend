@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart';
-import { Auth } from '../../services/auth';
+import { Auth, User} from '../../services/auth';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-
-
 
 
 @Component({
@@ -21,6 +19,9 @@ export class Navbar {
   username = "";
   password = "";
 
+  user: User | null = null;
+  showProfileView = false;
+
   constructor(
     private auth: Auth,
     private cartService: CartService
@@ -36,7 +37,19 @@ export class Navbar {
       this.isLoggedIn = loggedIn;
     });
 
+    this.auth.user$.subscribe(user => {
+      this.user = user;
+    });
+
     this.auth.checkToken();
+  }
+
+  toggleProfileView() {
+    if (this.isLoggedIn) {
+      this.showProfileView = !this.showProfileView;
+    } else {
+      alert("Bitte zuerst anmelden.");
+    }
   }
 
   openLoginModal() {
