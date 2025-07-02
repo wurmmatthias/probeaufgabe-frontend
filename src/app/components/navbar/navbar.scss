@@ -109,6 +109,7 @@
     right: 0;
     width: 280px;
     background-color: white;
+    color: #023E84;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -120,6 +121,7 @@
     align-items: center;
     gap: 0.25rem;
     animation: fadeIn 0.2s ease-out;
+    font-family: Roboto, sans-serif;
 
     img {
       border-radius: 50%;
