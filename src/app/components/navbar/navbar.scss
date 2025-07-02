@@ -100,6 +100,69 @@
   }
 }
 
+.navbar-icons {
+  position: relative;
+
+  .user-profile-panel {
+    position: absolute;
+    top: 100%; // appear below the icon block
+    right: 0;
+    width: 280px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    margin-top: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    animation: fadeIn 0.2s ease-out;
+
+    img {
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 0.25rem 0;
+      font-size: 0.9rem;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-icons .user-profile-panel {
+    right: auto;
+    left: 0;
+    width: 90vw;
+    margin: 0.5rem auto 0;
+  }
+}
+
 .navbar-login-button {
   background: #023E84 0% 0% no-repeat padding-box;
   border-radius: 18px;
