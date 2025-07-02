@@ -1,38 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, tap, Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable({ providedIn: 'root' })
 export class Auth {
-  private loggedInSubject = new BehaviorSubject<boolean>(false);
-  public isLoggedIn$ = this.loggedInSubject.asObservable();
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<any> {
     return this.http.post<any>('https://dummyjson.com/auth/login', {
       username,
       password
     }).pipe(
       tap(response => {
-        if (response?.token) {
-          this.loggedInSubject.next(true);
-          localStorage.setItem('authToken', response.token);
-        }
+        localStorage.setItem('accessToken', response.accessToken);
+        this.isLoggedInSubject.next(true);
       })
     );
   }
 
-  logout() {
-    this.loggedInSubject.next(false);
-    localStorage.removeItem('authToken');
+  logout(): void {
+    localStorage.removeItem('accessToken');
+    this.isLoggedInSubject.next(false);
   }
 
-  // Optional: auto-login if token exists
-  checkToken() {
-    const token = localStorage.getItem('authToken');
-    this.loggedInSubject.next(!!token);
+  checkToken(): void {
+    const token = localStorage.getItem('accessToken');
+    this.isLoggedInSubject.next(!!token);
   }
 }

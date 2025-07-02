@@ -4,6 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    padding: 0 80px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 32px 20px;
+  }
 }
 
 .hero-content {
@@ -14,7 +22,19 @@
   gap: 60px;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+}
+
+.text-column {
+  @media (max-width: 768px) {
+    align-items: center;
+  }
+}
+
+.hero-heading {
+  @media (max-width: 768px) {
     text-align: center;
   }
 }
@@ -70,11 +90,16 @@
 
 
 .image-column {
-  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
+
 .hero-image {
-  width: 514px;
-  height: 474px;
+  width: 100%;
+  max-width: 514px;
+  height: auto;
   object-fit: contain;
 }
+

@@ -1,3 +1,4 @@
+<div class="navbar-wrapper">
 <nav class="navbar">
   <div class="navbar-inner">
     <img src="assets/logos/buhl-logo.svg" alt="Logo" class="navbar-logo" />
@@ -48,22 +49,34 @@
 <img src="assets/images/buhlstreifen.svg" alt="Streifen" class="navbar-stripe" />
 
 
-<div class="modal-backdrop" [class.hidden]="!showLoginModal">
-  <div class="login-modal">
-    <button class="close-button" (click)="closeLoginModal()">×</button>
-    <h2>Anmelden</h2>
-    <form (submit)="login($event)">
-      <label>
-        Benutzername
-        <input type="text" [(ngModel)]="username" name="username" required />
-      </label>
-      <label>
-        Passwort
-        <input type="password" [(ngModel)]="password" name="password" required />
-      </label>
-      <button type="submit" class="login-button">Anmelden</button>
-    </form>
+<div class="modal-backdrop" *ngIf="showLoginModal">
+  <div class="login-modal two-column">
+
+    <!-- Left: Image section -->
+    <div class="modal-image-section">
+      <img src="assets/images/teaser-grafik-1200@2x.png" alt="Login Illustration" />
+    </div>
+
+    <!-- Right: Login form -->
+    <div class="modal-form-section">
+      <button type="button" class="close-button" (click)="closeLoginModal()">×</button>
+      <h2>Login</h2>
+      <form (ngSubmit)="login()" #loginForm="ngForm">
+        <label>
+          E-Mail
+          <input type="text" [(ngModel)]="username" name="username" required />
+        </label>
+        <label>
+          Passwort
+          <input type="password" [(ngModel)]="password" name="password" required />
+        </label>
+        <button type="submit" class="login-button">Anmelden</button>
+      </form>
+    </div>
+
   </div>
 </div>
+</div>
+
 
 

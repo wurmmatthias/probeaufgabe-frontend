@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from '../../services/cart';
 import { Auth } from '../../services/auth';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 
 
@@ -9,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   standalone: true,
   selector: 'app-navbar',
-  imports: [FormsModule],
+  imports: [FormsModule, NgIf],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
@@ -35,31 +36,30 @@ export class Navbar {
       this.isLoggedIn = loggedIn;
     });
 
-    this.auth.checkToken(); // optional: auto-login
+    this.auth.checkToken();
   }
 
-    openLoginModal() {
+  openLoginModal() {
     this.showLoginModal = true;
   }
 
   closeLoginModal() {
     this.showLoginModal = false;
+    console.log('[Navbar] Modal should now close');
   }
 
-login(event: Event) {
-  event.preventDefault();
+  login() {
+    this.auth.login(this.username, this.password).subscribe({
+      next: () => {
+        this.closeLoginModal();
+      },
+      error: (err) => {
+        console.error('[Navbar] Login failed:', err);
+        alert('Login fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.');
+      }
+    });
+  }
 
-  this.auth.login(this.username, this.password).subscribe({
-    next: () => {
-      console.log('[Navbar] Login success');
-      this.closeLoginModal();
-    },
-    error: (err) => {
-      console.error('[Navbar] Login failed:', err);
-      alert('Login fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.');
-    }
-  });
-}
 
   logout() {
     this.auth.logout();
