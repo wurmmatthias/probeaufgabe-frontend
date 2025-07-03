@@ -327,3 +327,109 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 768px) {
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 0 12px;
+    height: 80px;
+    position: relative;
+  }
+
+  // Burger menu visible only on mobile
+  .navbar-burger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 56px;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    span {
+      font: normal normal normal 10px/16px Roboto;
+      letter-spacing: 0.16px;
+      color: #023E84;
+      opacity: 1;
+      text-align: center;
+    }
+  }
+
+  // Logo next to burger
+  .navbar-logo {
+    display: block;
+    margin-left: 8px;
+    height: 26px;
+    width: auto;
+    position: static;
+    transform: none;
+  }
+
+  // Mobile right-side icons (visible only mobile)
+  .navbar-mobile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+
+    .navbar-icon-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 56px;
+
+      img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 2px;
+      }
+
+      span {
+        font: normal normal normal 10px/16px Roboto;
+        letter-spacing: 0.16px;
+        color: #023E84;
+        opacity: 1;
+        text-align: center;
+      }
+    }
+  }
+
+  // Hide desktop-specific content on mobile
+  .navbar-menu,
+  .navbar-icons,
+  .navbar-login-button {
+    display: none !important;
+  }
+
+  // Stripe stays visible
+  .navbar-stripe {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    position: relative;
+    top: -1px;
+  }
+}
+
+/* DESKTOP OVERRIDES >768px */
+@media (min-width: 769px) {
+  .navbar-burger,
+  .navbar-mobile-actions {
+    display: none !important;
+  }
+
+  .navbar-logo {
+    margin: 0;
+    transform: none;
+    position: static;
+  }
+}

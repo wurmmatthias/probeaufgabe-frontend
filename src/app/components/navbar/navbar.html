@@ -1,89 +1,102 @@
 <div class="navbar-wrapper">
-<nav class="navbar">
-  <div class="navbar-inner">
-    <img src="assets/logos/buhl-logo.svg" alt="Logo" class="navbar-logo" />
+  <nav class="navbar">
+    <div class="navbar-inner">
 
-    <ul class="navbar-menu">
-      <li class="navbar-item">
-        Alle Produkte <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
-      </li>
-      <li class="navbar-item">
-        Produktfinder <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
-      </li>
-      <li class="navbar-item">
-        Empfehlungen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
-      </li>
-      <li class="navbar-item">
-        Testversionen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" />
-      </li>
-    </ul>
+      <!-- Left: Burger menu (mobile only) -->
+      <div class="navbar-burger" (click)="toggleMobileMenu()">
+        <img src="assets/icons/ic-menu-24.svg" alt="Menu Icon" />
+        <span>Menü</span>
+      </div>
 
-    <div class="navbar-icons">
-      <div class="navbar-icon-block">
-        <img src="assets/icons/ic-suche-24.svg" alt="Suchen" />
-        <span>Suchen</span>
-      </div>
-      <div class="navbar-icon-block">
-        <img src="assets/icons/ic-apps-24.svg" alt="Apps" />
-        <span>Apps</span>
-      </div>
-      <div class="navbar-icon-block" (click)="toggleProfileView()">
-        <img src="assets/icons/ic-person-24.svg" alt="Kundencenter" />
-        <span>Kundencenter</span>
-      </div>
-      <div *ngIf="showProfileView && user" class="user-profile-panel">
-        <img [src]="user.image" [alt]="user.firstName" width="64" height="64" />
-        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-        <p><strong>Username:</strong> {{ user.username }}</p>
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Geschlecht:</strong> {{ user.gender }}</p>
-      </div>
-      <div class="navbar-icon-block navbar-icon-cart">
-        <img src="assets/icons/ic-warenkorb-24.svg" alt="Warenkorb" />
-        <span>Warenkorb</span>
-        @if (cartCount > 0) {
-          <span class="cart-badge">{{ cartCount }}</span>
-        }
+      <!-- Center: Logo -->
+      <img src="assets/logos/buhl-logo.svg" alt="Logo" class="navbar-logo" />
+
+      <!-- Right: Mobile-only icons -->
+      <div class="navbar-mobile-actions">
+        <div class="navbar-icon-block navbar-icon-cart">
+          <img src="assets/icons/ic-warenkorb-24.svg" alt="Warenkorb" />
+          <span>Warenkorb</span>
+          @if (cartCount > 0) {
+            <span class="cart-badge">{{ cartCount }}</span>
+          }
         </div>
+        <div class="navbar-icon-block" (click)="openLoginModal()">
+          <img src="assets/icons/ic-buhl-anmelden-24.svg" alt="Anmelden" />
+          <span>{{ isLoggedIn ? 'Abmelden' : 'Anmelden' }}</span>
+        </div>
+      </div>
+
+      <!-- Desktop navigation -->
+      <ul class="navbar-menu">
+        <li class="navbar-item">Alle Produkte <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>
+        <li class="navbar-item">Produktfinder <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>
+        <li class="navbar-item">Empfehlungen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>
+        <li class="navbar-item">Testversionen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>
+      </ul>
+
+      <!-- Desktop right icons -->
+      <div class="navbar-icons">
+        <div class="navbar-icon-block">
+          <img src="assets/icons/ic-suche-24.svg" alt="Suchen" />
+          <span>Suchen</span>
+        </div>
+        <div class="navbar-icon-block">
+          <img src="assets/icons/ic-apps-24.svg" alt="Apps" />
+          <span>Apps</span>
+        </div>
+        <div class="navbar-icon-block" (click)="toggleProfileView()">
+          <img src="assets/icons/ic-person-24.svg" alt="Kundencenter" />
+          <span>Kundencenter</span>
+        </div>
+        <div *ngIf="showProfileView && user" class="user-profile-panel">
+          <img [src]="user.image" [alt]="user.firstName" width="64" height="64" />
+          <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+          <p><strong>Username:</strong> {{ user.username }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Geschlecht:</strong> {{ user.gender }}</p>
+        </div>
+        <div class="navbar-icon-block navbar-icon-cart">
+          <img src="assets/icons/ic-warenkorb-24.svg" alt="Warenkorb" />
+          <span>Warenkorb</span>
+          @if (cartCount > 0) {
+            <span class="cart-badge">{{ cartCount }}</span>
+          }
+        </div>
+      </div>
+
+      <!-- Desktop login button -->
+      <button class="navbar-login-button" (click)="isLoggedIn ? logout() : openLoginModal()">
+        <img src="assets/icons/account_circle-24px.svg" alt="Login" />
+        <span>{{ isLoggedIn ? 'ABMELDEN' : 'ANMELDEN' }}</span>
+      </button>
+
     </div>
+  </nav>
 
-    <button class="navbar-login-button" (click)="isLoggedIn ? logout() : openLoginModal()">
-      <img src="assets/icons/account_circle-24px.svg" alt="Login"  />
-      <span>{{ isLoggedIn ? 'ABMELDEN' : 'ANMELDEN' }}</span>
-    </button>
-  </div>
-</nav>
-<img src="assets/images/buhlstreifen.svg" alt="Streifen" class="navbar-stripe" />
+  <!-- Buhl Stripe -->
+  <img src="assets/images/buhlstreifen.svg" alt="Streifen" class="navbar-stripe" />
 
-
-<div class="modal-backdrop" *ngIf="showLoginModal">
-  <div class="login-modal two-column">
-
-    <!-- Left: Image section -->
-    <div class="modal-image-section">
-      <img src="assets/images/teaser-grafik-1200@2x.png" alt="Login Illustration" />
+  <!-- Login modal (unchanged) -->
+  <div class="modal-backdrop" *ngIf="showLoginModal">
+    <div class="login-modal two-column">
+      <div class="modal-image-section">
+        <img src="assets/images/teaser-grafik-1200@2x.png" alt="Login Illustration" />
+      </div>
+      <div class="modal-form-section">
+        <button type="button" class="close-button" (click)="closeLoginModal()">×</button>
+        <h2>Login</h2>
+        <form (ngSubmit)="login()" #loginForm="ngForm">
+          <label>
+            E-Mail
+            <input type="text" [(ngModel)]="username" name="username" required />
+          </label>
+          <label>
+            Passwort
+            <input type="password" [(ngModel)]="password" name="password" required />
+          </label>
+          <button type="submit" class="login-button">Anmelden</button>
+        </form>
+      </div>
     </div>
-
-    <!-- Right: Login form -->
-    <div class="modal-form-section">
-      <button type="button" class="close-button" (click)="closeLoginModal()">×</button>
-      <h2>Login</h2>
-      <form (ngSubmit)="login()" #loginForm="ngForm">
-        <label>
-          E-Mail
-          <input type="text" [(ngModel)]="username" name="username" required />
-        </label>
-        <label>
-          Passwort
-          <input type="password" [(ngModel)]="password" name="password" required />
-        </label>
-        <button type="submit" class="login-button">Anmelden</button>
-      </form>
-    </div>
-
   </div>
 </div>
-</div>
-
-
-

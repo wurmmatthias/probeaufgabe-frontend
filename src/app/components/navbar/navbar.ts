@@ -18,6 +18,7 @@ export class Navbar {
   isLoggedIn = false;
   username = "";
   password = "";
+  isMobileMenuOpen = false;
 
   user: User | null = null;
   showProfileView = false;
@@ -77,4 +78,8 @@ export class Navbar {
   logout() {
     this.auth.logout();
   }
+
+toggleMobileMenu() {
+  this.isMobileMenuOpen = !this.isMobileMenuOpen;
+}
 }
