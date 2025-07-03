@@ -25,6 +25,9 @@ export class Navbar {
   user: User | null = null;
   showProfileView = false;
 
+  showSuccessMessage = false;
+  successMessage = "";
+
   constructor(
     private auth: Auth,
     private cartService: CartService,
@@ -66,12 +69,29 @@ export class Navbar {
     console.log('[Navbar] Modal should now close');
   }
 
+  showTemporaryMessage(message: string, duration = 3000) {
+    this.zone.run(() => {
+      this.successMessage = message;
+      this.showSuccessMessage = true;
+      this.cd.detectChanges();
+
+      setTimeout(() => {
+        this.showSuccessMessage = false;
+        this.successMessage = "";
+        this.cd.detectChanges();
+      }, duration);
+    });
+  }
+
+
+
   login() {
     this.auth.login(this.username, this.password).subscribe({
       next: () => {
       this.zone.run(() => {
         this.closeLoginModal();
         this.cd.detectChanges();
+        this.showTemporaryMessage("Erfolgreich angemeldet!");
       });
       },
       error: (err) => {
@@ -84,6 +104,9 @@ export class Navbar {
 
   logout() {
     this.auth.logout();
+    this.zone.run(() => {
+      this.showTemporaryMessage("Erfolgreich abgemeldet!");
+    });
   }
 
 toggleMobileMenu() {

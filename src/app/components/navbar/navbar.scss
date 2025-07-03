@@ -434,3 +434,18 @@
     position: static;
   }
 }
+
+.success-modal {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #023E84;
+  color: white;
+  font: normal normal normal 10px/16px Roboto;
+  padding: 12px 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
