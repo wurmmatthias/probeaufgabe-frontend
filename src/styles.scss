@@ -22,3 +22,10 @@ Globale Utility um die Abstände zu den Rändern zu wahren (wie angegeben in Ado
     padding-right: 4px;
   }
 }
+/*
+Overwrite browser defaults
+*/
+body {
+  margin: 0;
+  padding: 0;
+}

@@ -87,11 +87,11 @@
         <form (ngSubmit)="login()" #loginForm="ngForm">
           <label>
             Benutzername
-            <input type="text" [(ngModel)]="username" name="username" required />
+            <input type="text" [(ngModel)]="username" name="username" placeholder="Benutzername (Bsp.:michaelw)" required />
           </label>
           <label>
             Passwort
-            <input type="password" [(ngModel)]="password" name="password" required />
+            <input type="password" [(ngModel)]="password" placeholder="Benutzername (Bsp.:michaelwpass)" name="password" required />
           </label>
           <button type="submit" class="login-button">Anmelden</button>
         </form>
