@@ -20,7 +20,7 @@
             <span class="cart-badge">{{ cartCount }}</span>
           }
         </div>
-        <div class="navbar-icon-block" (click)="openLoginModal()">
+        <div class="navbar-icon-block" (click)="isLoggedIn ? logout() : openLoginModal()">
           <img src="assets/icons/ic-buhl-anmelden-24.svg" alt="Anmelden" />
           <span>{{ isLoggedIn ? 'Abmelden' : 'Anmelden' }}</span>
         </div>
@@ -76,7 +76,6 @@
   <!-- Buhl Stripe -->
   <img src="assets/images/buhlstreifen.svg" alt="Streifen" class="navbar-stripe" />
 
-  <!-- Login modal (unchanged) -->
   <div class="modal-backdrop" *ngIf="showLoginModal">
     <div class="login-modal two-column">
       <div class="modal-image-section">
@@ -84,10 +83,10 @@
       </div>
       <div class="modal-form-section">
         <button type="button" class="close-button" (click)="closeLoginModal()">×</button>
-        <h2>Login</h2>
+        <h2>Anmelden</h2>
         <form (ngSubmit)="login()" #loginForm="ngForm">
           <label>
-            E-Mail
+            Benutzername
             <input type="text" [(ngModel)]="username" name="username" required />
           </label>
           <label>

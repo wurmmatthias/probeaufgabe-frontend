@@ -3,6 +3,8 @@ import { CartService } from '../../services/cart';
 import { Auth, User} from '../../services/auth';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { NgZone } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -25,7 +27,9 @@ export class Navbar {
 
   constructor(
     private auth: Auth,
-    private cartService: CartService
+    private cartService: CartService,
+    private zone: NgZone,
+    private cd: ChangeDetectorRef
   ) {
     // Subscribe to cart count
     this.cartService.cartCount$.subscribe(count => {
@@ -65,7 +69,10 @@ export class Navbar {
   login() {
     this.auth.login(this.username, this.password).subscribe({
       next: () => {
+      this.zone.run(() => {
         this.closeLoginModal();
+        this.cd.detectChanges();
+      });
       },
       error: (err) => {
         console.error('[Navbar] Login failed:', err);
