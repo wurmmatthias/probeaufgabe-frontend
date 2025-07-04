@@ -18,17 +18,21 @@
   gap: 40px;
   align-items: center;
   justify-content: space-between;
-
-  // default layout
   flex-direction: row;
 
-  &.mirrored {
-    flex-direction: row-reverse;
-  }
-
   @media (max-width: 1024px) {
-    flex-direction: column !important;
+    flex-direction: column;
     text-align: center;
+
+    &.reverse-on-mobile {
+      .info-text {
+        order: 2;
+      }
+
+      .info-image {
+        order: 1;
+      }
+    }
   }
 }
 
