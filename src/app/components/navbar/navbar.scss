@@ -19,10 +19,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1320px; // or 100% - 860px for 430px padding
+  max-width: 1320px;
   margin: 0 auto;
   width: 100%;
-  padding: 0 20px; // fallback padding for small screens
+  padding: 0 20px;
   gap: 40px;
 
   @media (max-width: 1024px) {
@@ -111,7 +111,7 @@
 
   .user-profile-panel {
     position: absolute;
-    top: 100%; // appear below the icon block
+    top: 100%;
     right: 0;
     width: 280px;
     background-color: white;
@@ -260,7 +260,6 @@
   }
 }
 
-/* Left: image section */
 .modal-image-section {
   background-color: #F5F7FA;
   flex: 1;
@@ -276,7 +275,6 @@
   }
 }
 
-/* Right: login form */
 .modal-form-section {
   flex: 1;
   padding: 32px 24px;
@@ -346,7 +344,6 @@
     position: relative;
   }
 
-  // Burger menu visible only on mobile
   .navbar-burger {
     display: flex;
     flex-direction: column;
@@ -369,7 +366,6 @@
     }
   }
 
-  // Logo next to burger
   .navbar-logo {
     display: block;
     margin-left: 8px;
@@ -379,7 +375,6 @@
     transform: none;
   }
 
-  // Mobile right-side icons (visible only mobile)
   .navbar-mobile-actions {
     display: flex;
     align-items: center;
@@ -408,14 +403,12 @@
     }
   }
 
-  // Hide desktop-specific content on mobile
   .navbar-menu,
   .navbar-icons,
   .navbar-login-button {
     display: none !important;
   }
 
-  // Stripe stays visible
   .navbar-stripe {
     display: block;
     width: 100%;
