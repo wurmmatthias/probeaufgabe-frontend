@@ -1,12 +1,29 @@
 <div class="hero-container">
   <div class="hero-content">
     <div class="text-column">
-      <img src="assets/logos/gruppelogo.svg" alt="Logo" class="hero-logo" />
-      <h1 class="hero-heading">Die flexible Bürosoftware für Ihr Unternehmen</h1>
-      <button class="hero-button" (click)="addToCart()">Jetzt testen</button>
+      <img *ngIf="logoSrc" [src]="logoSrc" alt="Logo" class="hero-logo" />
+      <h1 class="hero-heading">{{ heading }}</h1>
+      <ng-container *ngIf="buttonLabel">
+        <button
+          *ngIf="buttonClick && !buttonLink"
+          class="hero-button" 
+          (click)="buttonClick?.()"
+        >
+          {{ buttonLabel }}
+        </button>
+
+        <a
+          *ngIf="buttonLink"
+          [routerLink]="buttonLink"
+          class="hero-button"
+          role="button"
+        >
+          {{ buttonLabel }}
+        </a>
+      </ng-container>
     </div>
     <div class="image-column">
-      <img src="assets/images/teaser-grafik-1200@2x.png" alt="Hero" class="hero-image" />
+      <img [src]="imageSrc" alt="Hero" class="hero-image" />
     </div>
   </div>
 </div>

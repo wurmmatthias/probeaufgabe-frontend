@@ -98,9 +98,17 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none; // remove underline from <a>
 
   &:hover {
     background: darken(#ED751B, 10%);
+    text-decoration: none;
   }
 }
 
