@@ -23,6 +23,6 @@ export class Hero {
   @Input() logoSrc?: string;
   @Input() imageSrc: string = '';
 
-  @Input() buttonClick?: () => void;           // optional callback
-  @Input() buttonLink?: string;                // optional router link
+  @Input() buttonClick?: () => void;
+  @Input() buttonLink?: string;
 }
