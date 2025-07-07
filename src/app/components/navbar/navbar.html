@@ -9,7 +9,7 @@
       </div>
 
       <!-- Center: Logo -->
-      <img src="assets/logos/buhl-logo.svg" alt="Logo" class="navbar-logo" />
+      <img routerLink="/" src="assets/logos/buhl-logo.svg" alt="Logo" class="navbar-logo" />
 
       <!-- Right: Mobile-only icons -->
       <div class="navbar-mobile-actions">
@@ -28,7 +28,7 @@
 
       <!-- Desktop navigation -->
       <ul class="navbar-menu">
-        <li class="navbar-item">Alle Produkte <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>
+        <li class="navbar-item"><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="navbar-link">Alle Produkte <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></a></li>
         <li class="navbar-item">Produktfinder <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>
         <li class="navbar-item">Empfehlungen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>
         <li class="navbar-item">Testversionen <img src="assets/icons/arrowdown.svg" alt="↓" class="icon" /></li>

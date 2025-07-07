@@ -74,6 +74,30 @@
   }
 }
 
+.navbar-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #023E84;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.active {
+    font-weight: bold;
+  }
+
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
 .navbar-icons {
   display: flex;
   gap: 20px;
@@ -373,6 +397,7 @@
     width: auto;
     position: static;
     transform: none;
+    cursor: pointer;
   }
 
   .navbar-mobile-actions {
@@ -431,6 +456,7 @@
     margin: 0;
     transform: none;
     position: static;
+    cursor: pointer;
   }
 }
 

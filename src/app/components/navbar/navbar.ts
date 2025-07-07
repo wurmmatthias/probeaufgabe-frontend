@@ -5,12 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { NgZone } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   standalone: true,
   selector: 'app-navbar',
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgIf, RouterModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
